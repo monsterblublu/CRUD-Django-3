@@ -1,0 +1,29 @@
+{% extends 'basic_app/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row ">
+        <div class="col">
+            {% if not form.instance.pk%}
+                <bold><h2 class="card-title">Create</h2></bold>
+                  {% else %}
+                  <bold><h2 class="card-title">Update</h2></bold>
+                  {% endif %}
+            <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-primary" value="submit">
+            </form>
+        </div>
+
+      </div>
+
+</div>
+
+
+
+
+    <h6></h6>
+
+
+
+{% endblock %}

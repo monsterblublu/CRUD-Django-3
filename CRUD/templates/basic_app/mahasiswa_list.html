@@ -1,0 +1,35 @@
+{% extends 'basic_app/base.html' %}
+{% block content %}
+    <div class="container">
+        <h1>Mahasiswa</h1>
+        <table class="table">
+            <thead>
+                <a href="{% url 'mahasiswa_new' %}"><span class="badge bg-primary">+ Add Mahasiswa</span></a>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Nisn</th>
+                <th scope="col">Nis</th>
+                <th scope="col">action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for mahasiswa in mahasiswa_list %}
+              <tr>
+                
+                <th scope="row">{{mahasiswa.id}}</th>
+                <td>{{mahasiswa.name}}</td>
+                <td>{{mahasiswa.nisn}}</td>
+                <td>{{mahasiswa.nis}}</td>
+                <td><a href="{{mahasiswa.id}}"><span class="badge bg-warning text-dark">View</span></a></td>
+                
+
+                
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          
+    </div>
+    {% endblock %}

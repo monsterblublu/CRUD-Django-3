@@ -1,0 +1,96 @@
+{% extends 'basic_app/base.html' %}
+{% block content %}
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col mb-5 m-auto">
+            <div class="card" style="width: 18rem;">
+                <img src="/media/{{mahasiswa_detail.profile_pic}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{mahasiswa_detail.name|upper}}</h5>
+                  <p class="card-text">{{mahasiswa_detail.quote_me}}</p>
+                  <a href="{% url 'mahasiswa_edit' pk=mahasiswa_detail.id %}" class="btn btn-warning">Edit</a>
+
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Delete
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">Delete Confirmation</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Are you sure to delete {{mahasiswa_detail.name|upper}}?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <form action="{% url 'mahasiswa_remove' pk=mahasiswa_detail.id %}" method="post">
+                            {% csrf_token%}
+                          <button type="submit" class="btn btn-danger">Understood</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col col-lg-8 mb-5 m-auto">
+            <div class="card">
+                <div class="card-header">
+                  Bio Data
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tbody>
+                          <tr>
+                            <th scope="row">Name </th>
+                            <td>{{mahasiswa_detail.name|upper}}</td>
+                
+                          </tr>
+                          <tr>
+                            <th scope="row">NISN</th>
+                            <td>{{mahasiswa_detail.nisn}}</td>
+
+                          </tr>
+                          <tr>
+                            <th scope="row">NIS</th>
+                            <td>{{mahasiswa_detail.nis}}</td>
+                          </tr>
+                          
+                          <tr>
+                            <th scope="row">Address</th>
+                            <td>{{mahasiswa_detail.address|upper}}</td>
+                          </tr>
+
+                          <tr>
+                            <th scope="row">Phone</th>
+                            <td>{{mahasiswa_detail.phone}}</td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+
+        
+        
+ 
+    </div>
+</div>
+
+
+
+
+{% endblock %}
